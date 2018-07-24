@@ -36,7 +36,7 @@ public class Board {
 			for (int horizontalBox = 0; horizontalBox < SIZE; horizontalBox += BOX_SIZE) {
 				for (int column = 0; column < SIZE * BOX_SIZE; column += SIZE) {
 					for (int tileInRow = 0; tileInRow < BOX_SIZE; tileInRow++) {
-						boxes[(horizontalBox / BOX_SIZE) * (verticalBox / (SIZE * BOX_SIZE))][tileInRow + (BOX_SIZE * (column / SIZE))] = state[tileInRow + column + horizontalBox];
+						boxes[(horizontalBox / BOX_SIZE) + (verticalBox / (SIZE * BOX_SIZE))][tileInRow + (BOX_SIZE * (column / SIZE))] = state[tileInRow + column + horizontalBox];
 					}
 				}
 			}
