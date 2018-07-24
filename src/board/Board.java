@@ -3,7 +3,7 @@ package board;
 public class Board {
 
 	private final int SIZE;
-
+	private Tile[] state;
 	private Tile[][] rows;
 	private Tile[][] columns;
 	private Tile[][][] boxes;
@@ -26,22 +26,21 @@ public class Board {
 		this.rows = new Tile[SIZE][SIZE];
 		this.columns = new Tile[SIZE][SIZE];
 		this.boxes = new Tile[SIZE][(int) Math.sqrt(SIZE)][(int) Math.sqrt(SIZE)];
-
-		Tile[] startingTileStates = new Tile[SIZE * SIZE];
+		this.state = new Tile[SIZE * SIZE];
 
 		for (int i = 0; i < startingState.length; i++) {//create tiles from ints in startingState
-			startingTileStates[i] = new Tile(SIZE, startingState[i]);
+			state[i] = new Tile(SIZE, startingState[i], i);
 		}
 
 		for (int i = 0; i < (int) Math.pow(SIZE, 2); i += SIZE) {// convert one dimensional input array to 2D rows array
 			for (int j = 0; j < SIZE; j++) {
-				rows[i / SIZE][j] = startingTileStates[i + j];
+				rows[i / SIZE][j] = state[i + j];
 			}
 		}
 
 		for (int j = 0; j < SIZE; j++) {// convert one dimensional input array to 2D columns array
 			for (int i = 0; i < (int) Math.pow(SIZE, 2); i += SIZE) {
-				columns[j][i / SIZE] = startingTileStates[i + j];
+				columns[j][i / SIZE] = state[i + j];
 			}
 		}
 

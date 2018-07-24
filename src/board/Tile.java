@@ -3,10 +3,8 @@ package board;
 class Tile {
 	private boolean[] possibleValues;
 	private boolean[] impossibleValues;
-	private final int minValue = 1;
-	private final int maxValue;
+	private final int boardIndex;
 	private int value = 0;
-	private final int boardSize;
 
 	public boolean[] getPossibleValues() {
 		return (possibleValues);
@@ -20,12 +18,15 @@ class Tile {
 		return (value);
 	}
 
-	public Tile(final int boardSize, int value) {//pass 0 as value for empty tile.
-		this.boardSize = boardSize;
+	public int getBoardIndex() {
+		return (boardIndex);
+	}
+
+	public Tile(final int boardSize, int value, int boardIndex) {//pass 0 as value for empty tile.
 		this.possibleValues = new boolean[boardSize];
 		this.impossibleValues = new boolean[boardSize];
-		this.maxValue = boardSize;
 		this.value = value;
+		this.boardIndex = boardIndex;
 
 		if (value == 0) {
 			for (int i = 0; i < boardSize; i++) {
