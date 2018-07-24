@@ -3,6 +3,7 @@ package board;
 public class Board {
 
 	private final int SIZE;
+	private final int BOX_SIZE;
 	private Tile[] state;
 
 	public final int getSize() {
@@ -29,34 +30,41 @@ public class Board {
 		return (columns[column]);
 	}
 
-	private Tile[] getBox(int box) {//box is a 3x3 grid on the board, box index ("box" parameter) is from left to right, top to bottom
-		Tile[][] boxes = new Tile[SIZE][(int) Math.sqrt(SIZE)];
-		//TODO: get box
+	public Tile[] getBox(int box) {//box is a 3x3 grid on the board, box index ("box" parameter) is from left to right, top to bottom
+		Tile[][] boxes = new Tile[SIZE][SIZE];
+		for (int verticalBox = 0; verticalBox < (int) Math.pow(SIZE, 2); verticalBox += SIZE * BOX_SIZE) {
+			for (int horizontalBox = 0; horizontalBox < SIZE; horizontalBox += BOX_SIZE) {
+				for (int column = 0; column < SIZE * BOX_SIZE; column += SIZE) {
+					for (int tileInRow = 0; tileInRow < BOX_SIZE; tileInRow++) {
+						boxes[(horizontalBox / BOX_SIZE) * (verticalBox / (SIZE * BOX_SIZE))][tileInRow + (BOX_SIZE * (column / SIZE))] = state[tileInRow + column + horizontalBox];
+					}
+				}
+			}
+		}
 		return (boxes[box]);
 	}
 
-	public Tile[] getRowByTileBoardIndex() {
-		return();//TODO: implement
-	}
-
-	public Tile[] getColumnByTileBoardIndex() {
-		return();//TODO: implement
-	}
-
-	public Tile[] getBoxByTileBoardIndex() {
-		return();//TODO: implement
-	}
+	//	public Tile[] getRowByTileBoardIndex() {
+	//		return();//TODO: implement
+	//	}
+	//
+	//	public Tile[] getColumnByTileBoardIndex() {
+	//		return();//TODO: implement
+	//	}
+	//
+	//	public Tile[] getBoxByTileBoardIndex() {
+	//		return();//TODO: implement
+	//	}
 
 	public Board(int size, int[] startingState) {
 		//startingState is one dimensional array with all tile states, from left to right, top to bottom. empty tiles are 0
 		this.SIZE = size;
+		this.BOX_SIZE = (int) Math.sqrt(SIZE);
 		this.state = new Tile[SIZE * SIZE];
 
 		for (int i = 0; i < startingState.length; i++) {//create tiles from ints in startingState
 			state[i] = new Tile(SIZE, startingState[i], i);
 		}
-
-		System.out.println(getBox(1));//remove this line
 
 	}
 
