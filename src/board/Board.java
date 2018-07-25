@@ -38,9 +38,9 @@ public class Board {
 	//			//TODO: implement
 	//		}
 
-	public Tile[] getRowByTileBoardIndex(int tileIndex) {
+	public Tile[] getRowByTileBoardIndex(int tileIndex) {//returns the row that contains the tile of the given boardIndex (i.e TileInstance.getBoardIndex())
 		Tile[] row = new Tile[SIZE];
-
+		row = getRow((tileIndex - (tileIndex % SIZE)) / SIZE);
 		return (row);
 	}
 
