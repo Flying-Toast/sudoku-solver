@@ -1,6 +1,6 @@
 package board;
 
-class Tile {
+public class Tile {
 	private boolean[] possibleValues;
 	private boolean[] impossibleValues;
 	private final int boardIndex;
