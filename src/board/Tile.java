@@ -14,8 +14,26 @@ public class Tile {
 		return (impossibleValues);
 	}
 
-	public void markValueAsImpossible(int valueToMark) {//marks the passed value as impossible, 
+	public void markImpossibleValue(int valueToMark) {//marks the passed value as impossible, and also updates possibleValues, and checks if value is known
+		impossibleValues[valueToMark + 1] = true;
+		possibleValues[valueToMark + 1] = false;
+		this.checkIfValueIsKnown();
+	}
 
+	private void checkIfValueIsKnown() {
+		int occurrences = 0;
+		int knownValue = 0;
+
+		for (int i = 0; i < possibleValues.length; i++) {
+			if (possibleValues[i] == true) {
+				knownValue = i + 1;
+				occurrences++;
+			}
+		}
+
+		if (occurrences == 1 && value == 0) {
+			value = knownValue;
+		}
 	}
 
 	public int getValue() {
