@@ -14,6 +14,10 @@ public class Tile {
 		return (impossibleValues);
 	}
 
+	public void markValueAsImpossible(int valueToMark) {//marks the passed value as impossible, 
+
+	}
+
 	public int getValue() {
 		return (value);
 	}
