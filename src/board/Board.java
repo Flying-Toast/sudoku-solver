@@ -18,19 +18,7 @@ public class Board {
 		return (state);
 	}
 
-	public Board(int size, int[] startingState) {
-		//startingState is one dimensional array with all tile states, from left to right, top to bottom. empty tiles are 0
-		this.SIZE = size;
-		this.BOX_SIZE = (int) Math.sqrt(SIZE);
-		this.state = new Tile[SIZE * SIZE];
-
-		for (int i = 0; i < startingState.length; i++) {//create tiles from ints in startingState
-			state[i] = new Tile(SIZE, startingState[i], i);
-		}
-
-	}
-
-	private Tile[] getRow(int rowIndex) {//returns the specified row (zero based rowIndex)
+	public Tile[] getRow(int rowIndex) {//returns the specified row (zero based rowIndex)
 		Tile[][] rows = new Tile[SIZE][SIZE];//TODO: only build row that is needed, not entire board.
 		for (int i = 0; i < (int) Math.pow(SIZE, 2); i += SIZE) {// convert one dimensional state array to 2D rows array
 			for (int j = 0; j < SIZE; j++) {
@@ -40,7 +28,7 @@ public class Board {
 		return (rows[rowIndex]);
 	}
 
-	private Tile[] getColumn(int columnIndex) {//returns the specified column (zero based columnIndex)
+	public Tile[] getColumn(int columnIndex) {//returns the specified column (zero based columnIndex)
 		Tile[][] columns = new Tile[SIZE][SIZE];//TODO: only build column that is needed, not entire board.
 		for (int j = 0; j < SIZE; j++) {// convert one dimensional state array to 2D columns array
 			for (int i = 0; i < (int) Math.pow(SIZE, 2); i += SIZE) {
@@ -48,6 +36,16 @@ public class Board {
 			}
 		}
 		return (columns[columnIndex]);
+	}
+
+	public Tile[] getBox(int boxIndex) {
+		int fullBoxRows = (boxIndex - (boxIndex % BOX_SIZE)) / BOX_SIZE;
+		int tilesForFullBoxRows = (BOX_SIZE * SIZE) * fullBoxRows;
+		int boxNumberInRow = (boxIndex % BOX_SIZE) + 1;
+		int tilesForBoxNumberInRow = BOX_SIZE * boxNumberInRow;
+		int tileIndexInBox = (tilesForFullBoxRows + tilesForBoxNumberInRow) - 1;
+
+		return (getBoxByTileBoardIndex(tileIndexInBox));
 	}
 
 	public Tile[] getRowByTileBoardIndex(int tileIndex) {//returns the row that contains the tile of the given boardIndex (i.e TileInstance.getBoardIndex())
@@ -93,5 +91,21 @@ public class Board {
 		}
 
 		return (true);
+	}
+
+	public void printState() {
+		//BROKEN
+	}
+
+	public Board(int size, int[] startingState) {
+		//startingState is one dimensional array with all tile states, from left to right, top to bottom. empty tiles are 0
+		this.SIZE = size;
+		this.BOX_SIZE = (int) Math.sqrt(SIZE);
+		this.state = new Tile[SIZE * SIZE];
+
+		for (int i = 0; i < startingState.length; i++) {//create tiles from ints in startingState
+			state[i] = new Tile(SIZE, startingState[i], i);
+		}
+
 	}
 }

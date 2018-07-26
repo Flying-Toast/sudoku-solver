@@ -5,6 +5,7 @@ public class Tile {
 	private boolean[] impossibleValues;
 	private final int boardIndex;
 	private int value = 0;
+	private final int BOARD_SIZE;
 
 	public boolean[] getPossibleValues() {
 		return (possibleValues);
@@ -18,6 +19,14 @@ public class Tile {
 		impossibleValues[valueToMark - 1] = true;
 		possibleValues[valueToMark - 1] = false;
 		this.checkIfValueIsKnown();
+	}
+
+	public void setKnownValue(int value) {
+		for (int i = 0; i < BOARD_SIZE; i++) {
+			if (i + 1 != value) {
+				markImpossibleValue(value);
+			}
+		}
 	}
 
 	private void checkIfValueIsKnown() {
@@ -49,6 +58,7 @@ public class Tile {
 		this.impossibleValues = new boolean[boardSize];
 		this.value = value;
 		this.boardIndex = boardIndex;
+		this.BOARD_SIZE = boardSize;
 
 		if (value == 0) {
 			for (int i = 0; i < boardSize; i++) {
