@@ -102,6 +102,7 @@ public class Board {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 
 	public Board(int size, int[] startingState) {
