@@ -15,8 +15,8 @@ public class Tile {
 	}
 
 	public void markImpossibleValue(int valueToMark) {//marks the passed value as impossible, and also updates possibleValues, and checks if value is known
-		impossibleValues[valueToMark + 1] = true;
-		possibleValues[valueToMark + 1] = false;
+		impossibleValues[valueToMark - 1] = true;
+		possibleValues[valueToMark - 1] = false;
 		this.checkIfValueIsKnown();
 	}
 
