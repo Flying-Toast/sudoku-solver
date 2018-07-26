@@ -14,6 +14,22 @@ public class Board {
 		return (BOX_SIZE);
 	}
 
+	public Tile[] getState() {
+		return (state);
+	}
+
+	public Board(int size, int[] startingState) {
+		//startingState is one dimensional array with all tile states, from left to right, top to bottom. empty tiles are 0
+		this.SIZE = size;
+		this.BOX_SIZE = (int) Math.sqrt(SIZE);
+		this.state = new Tile[SIZE * SIZE];
+
+		for (int i = 0; i < startingState.length; i++) {//create tiles from ints in startingState
+			state[i] = new Tile(SIZE, startingState[i], i);
+		}
+
+	}
+
 	private Tile[] getRow(int rowIndex) {//returns the specified row (zero based rowIndex)
 		Tile[][] rows = new Tile[SIZE][SIZE];//TODO: only build row that is needed, not entire board.
 		for (int i = 0; i < (int) Math.pow(SIZE, 2); i += SIZE) {// convert one dimensional state array to 2D rows array
@@ -65,16 +81,17 @@ public class Board {
 		return (box);
 	}
 
-	public Board(int size, int[] startingState) {
-		//startingState is one dimensional array with all tile states, from left to right, top to bottom. empty tiles are 0
-		this.SIZE = size;
-		this.BOX_SIZE = (int) Math.sqrt(SIZE);
-		this.state = new Tile[SIZE * SIZE];
-
-		for (int i = 0; i < startingState.length; i++) {//create tiles from ints in startingState
-			state[i] = new Tile(SIZE, startingState[i], i);
-		}
-
+	public Tile getTileByBoardIndex(int tileIndex) {
+		return (state[tileIndex]);
 	}
 
+	public boolean isSolved() {
+		for (int i = 0; i < state.length; i++) {//return false if any tile has value 0
+			if (state[i].getValue() == 0) {
+				return (false);
+			}
+		}
+
+		return (true);
+	}
 }
