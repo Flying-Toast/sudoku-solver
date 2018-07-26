@@ -94,7 +94,14 @@ public class Board {
 	}
 
 	public void printState() {
-		//BROKEN
+		for (int i = 0; i < SIZE; i++) {
+			Tile[] row = getRow(i);
+			for (int j = 0; j < SIZE; j++) {
+				System.out.print(row[j].getValue());
+				System.out.print(' ');
+			}
+			System.out.println();
+		}
 	}
 
 	public Board(int size, int[] startingState) {
