@@ -93,6 +93,14 @@ public class Board {
 		return (true);
 	}
 
+	public void setTileValue(int tileIndex, int value) {
+		for (int i = 0; i < SIZE; i++) {
+			if (i + 1 != value) {
+				getTileByBoardIndex(tileIndex).markImpossibleValue(value);
+			}
+		}
+	}
+
 	public void printState() {
 		for (int i = 0; i < SIZE; i++) {
 			Tile[] row = getRow(i);
