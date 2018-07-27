@@ -33,19 +33,22 @@ public class Tile {
 	}
 
 	private void checkIfValueIsKnown() {
-		/*int occurrences = 0;//TODO: doesn't work
+		int occurrences = 0;
 		int knownValue = 0;
-		
+
 		for (int i = 0; i < possibleValues.length; i++) {
 			if (possibleValues[i] == true) {
 				knownValue = i + 1;
 				occurrences++;
 			}
 		}
-		
+
 		if (occurrences == 1 && value == 0) {
+			if (boardIndex == 0) {
+				System.out.println();
+			}
 			value = knownValue;
-		}*/
+		}
 	}
 
 	public int getValue() {
