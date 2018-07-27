@@ -24,7 +24,7 @@ public class Tile {
 	public void setKnownValue(int value) {
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			if (i + 1 != value) {
-				markImpossibleValue(value);
+				markImpossibleValue(i + 1);
 			}
 		}
 		if (this.value == 0) {
@@ -44,9 +44,6 @@ public class Tile {
 		}
 
 		if (occurrences == 1 && value == 0) {
-			if (boardIndex == 0) {
-				System.out.println();
-			}
 			value = knownValue;
 		}
 	}

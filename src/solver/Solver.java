@@ -32,7 +32,6 @@ public class Solver {
 			if (row[i].getBoardIndex() == tileIndex) {
 				continue;
 			}
-
 			row[i].markImpossibleValue(tileValue);
 		}
 	}
@@ -50,7 +49,6 @@ public class Solver {
 			if (column[i].getBoardIndex() == tileIndex) {
 				continue;
 			}
-
 			column[i].markImpossibleValue(tileValue);
 		}
 	}
@@ -68,7 +66,6 @@ public class Solver {
 			if (box[i].getBoardIndex() == tileIndex) {
 				continue;
 			}
-
 			box[i].markImpossibleValue(tileValue);
 		}
 	}
@@ -113,7 +110,6 @@ public class Solver {
 					if (numberOfPossibleLocations == 1) {
 						column[indexOfLocation].setKnownValue(value);
 						markAllTileGroups();
-						board.printState();
 					}
 				}
 			}
@@ -134,7 +130,6 @@ public class Solver {
 					if (numberOfPossibleLocations == 1) {
 						row[indexOfLocation].setKnownValue(value);
 						markAllTileGroups();
-						board.printState();
 					}
 				}
 			}
@@ -155,7 +150,6 @@ public class Solver {
 					if (numberOfPossibleLocations == 1) {
 						box[indexOfLocation].setKnownValue(value);
 						markAllTileGroups();
-						board.printState();
 					}
 				}
 			}
