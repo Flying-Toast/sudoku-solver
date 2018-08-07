@@ -29,13 +29,11 @@ public class Board {
 	}
 
 	public Tile[] getColumn(int columnIndex) {//returns the specified column (zero based columnIndex)
-		Tile[][] columns = new Tile[SIZE][SIZE];//TODO: only build column that is needed, not entire board.
-		for (int j = 0; j < SIZE; j++) {// convert one dimensional state array to 2D columns array
-			for (int i = 0; i < (int) Math.pow(SIZE, 2); i += SIZE) {
-				columns[j][i / SIZE] = state[i + j];
-			}
+		Tile[] column = new Tile[SIZE];
+		for (int i = 0; i < SIZE; i++) {
+			column[i] = getState()[columnIndex + (SIZE * i)];
 		}
-		return (columns[columnIndex]);
+		return (column);
 	}
 
 	public Tile[] getBox(int boxIndex) {
