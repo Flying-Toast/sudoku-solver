@@ -19,20 +19,22 @@ public class Board {
 	}
 
 	public Tile[] getRow(int rowIndex) {//returns the specified row (zero based rowIndex)
-		Tile[][] rows = new Tile[SIZE][SIZE];//TODO: only build row that is needed, not entire board.
-		for (int i = 0; i < (int) Math.pow(SIZE, 2); i += SIZE) {// convert one dimensional state array to 2D rows array
-			for (int j = 0; j < SIZE; j++) {
-				rows[i / SIZE][j] = state[i + j];
-			}
+		Tile[] row = new Tile[SIZE];
+
+		for (int i = 0; i < SIZE; i++) {
+			row[i] = getState()[(rowIndex * SIZE) + i];
 		}
-		return (rows[rowIndex]);
+
+		return (row);
 	}
 
 	public Tile[] getColumn(int columnIndex) {//returns the specified column (zero based columnIndex)
 		Tile[] column = new Tile[SIZE];
+
 		for (int i = 0; i < SIZE; i++) {
 			column[i] = getState()[columnIndex + (SIZE * i)];
 		}
+
 		return (column);
 	}
 
