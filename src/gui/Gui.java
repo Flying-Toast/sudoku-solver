@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -27,6 +28,7 @@ public class Gui extends JFrame {
 		setLayout(new GridLayout(9, 9));
 		setMinimumSize(new Dimension(200, 225));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setPreferredSize(new Dimension(WIDTH, 25));
