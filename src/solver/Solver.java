@@ -21,8 +21,6 @@ public class Solver {
 				return;
 			}*/
 		}
-		System.out.println("Solved!");
-		board.printState();
 	}
 
 	private void markRowByTileIndex(int tileIndex) {//marks all tiles in given tile's row as impossible for the value of the given tile

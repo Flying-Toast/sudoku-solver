@@ -1,6 +1,7 @@
 
 package gui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -15,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 
 import board.Board;
+import board.Tile;
 import solver.Solver;
 
 public class Gui extends JFrame {
@@ -34,9 +36,9 @@ public class Gui extends JFrame {
 		menuBar.setPreferredSize(new Dimension(WIDTH, 25));
 		this.setJMenuBar(menuBar);
 
-		JMenu solveMenu = new JMenu("Solve");
+		JMenu solveMenu = new JMenu("Board");
 		menuBar.add(solveMenu);
-		JMenuItem solveButton = new JMenuItem("Solve Board");
+		JMenuItem solveButton = new JMenuItem("Solve");
 		solveButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -57,9 +59,36 @@ public class Gui extends JFrame {
 				Board board = new Board(9, startState);
 				Solver solver = new Solver(board);
 				solver.solve();
+
+				Tile[] solvedState = board.getState();
+				for (int i = 0; i < 81; i++) {
+					JTextField tileInput = ((JTextField) tileInputs[i]);
+					if (tileInput.getText().isEmpty() || tileInput.getText() == "0") {
+						tileInput.setForeground(new Color(37, 160, 28));
+						tileInput.setText("" + solvedState[i].getValue());
+						tileInput.setEditable(false);
+					}
+				}
 			}
 		});
 		solveMenu.add(solveButton);
+
+		JMenuItem resetButton = new JMenuItem("Reset");
+		resetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+
+				Component[] tiles = getRootPane().getContentPane().getComponents();
+
+				for (int i = 0; i < tiles.length; i++) {
+					JTextField tile = ((JTextField) tiles[i]);
+					tile.setEditable(true);
+					tile.setText("");
+				}
+				((JTextField) tiles[0]).requestFocusInWindow();
+			}
+		});
+		solveMenu.add(resetButton);
 
 		JMenu helpMenu = new JMenu("Help");
 		menuBar.add(helpMenu);
