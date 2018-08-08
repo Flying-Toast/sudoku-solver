@@ -89,14 +89,6 @@ public class Gui extends JFrame {
 			}
 		});
 		solveMenu.add(resetButton);
-
-		JMenu helpMenu = new JMenu("Help");
-		menuBar.add(helpMenu);
-		JMenuItem helpButton = new JMenuItem("Usage");
-		helpMenu.add(helpButton);
-		JMenuItem aboutButton = new JMenuItem("About");
-		helpMenu.add(aboutButton);
-
 		for (int i = 0; i < 81; i++) {
 			JTextField textField = new JTextField();
 			textField.setHorizontalAlignment(JTextField.CENTER);
