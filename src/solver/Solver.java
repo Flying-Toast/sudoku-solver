@@ -11,15 +11,9 @@ public class Solver {
 	}
 
 	public void solve() {
-		Tile[] previousState;
 		while (!board.isSolved()) {
-			previousState = board.getState();
 			markAllTileGroups();
 			checkAllGroupsForValues();
-			/*if (Arrays.equals(previousState, board.getState())) {
-				System.out.println("Could not solve board.");//TODO: give the user an option to bruteforce the remaining tiles if solving fails
-				return;
-			}*/
 		}
 	}
 
