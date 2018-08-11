@@ -33,6 +33,10 @@ public class Tile {
 	}
 
 	private void checkIfValueIsKnown() {
+		if (value != 0) {
+			return;
+		}
+
 		int occurrences = 0;
 		int knownValue = 0;
 
@@ -43,7 +47,7 @@ public class Tile {
 			}
 		}
 
-		if (occurrences == 1 && value == 0) {
+		if (occurrences == 1) {
 			value = knownValue;
 		}
 	}
