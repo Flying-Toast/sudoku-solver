@@ -69,9 +69,7 @@ public class Board {
 		int localTileIndex = 0;
 		for (int row = 0; row < BOX_SIZE; row++) {
 			for (int tileInRow = 0; tileInRow < BOX_SIZE; tileInRow++) {
-				int s = indexOfFirstTileInBox + tileInRow + (row * SIZE);
-				int b = localTileIndex;
-				box[b] = state[s];
+				box[localTileIndex] = state[indexOfFirstTileInBox + tileInRow + (row * SIZE)];
 				localTileIndex++;//localTileIndex: zero based index of the tile in the box that is currently being inserted, with the zero index being the top left tile in the box
 			}
 		}
